@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8"/>
+<title>Project3</title>
+<style type="text/css">
+body{
+	width: 1280px; 
+	background-color: teal; 
+	margin: 0 auto;
+	padding: 0;
+	font:18px/22px Verdana, sans-serif;
+}
+div#main{
+	background-color: #FFF;
+	margin: 0;
+	padding: 10px;
+}
+h1{
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="main">
+	<!-- CONTENT HERE -->
+	<div id="title">
+		<h1>Project 3:Eigenfaces</h1>
+		<h3>By Zhening Li 445612 <br><br>at 2016-10-24</h3>
+	</div>
+	<div id="content">
+		<div id="part1">
+		<h2>1.Testing recognition with cropped class images</h2>
+		<P>(a) I use the cropped, neutral students within the neutral folder to compute 10 eigenfaces.
+			<br>Average face: <br>
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/average_face.jpg">
+			<br>Eigenfaces:<br>
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_0.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_1.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_2.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_3.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_4.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_5.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_6.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_7.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_8.jpg">
+			<img style="width: 100px; height: 100px;" alt="ave" src="images/eigen_face_0.jpg">
+		</p>
+		<p>(b) I try to recognize the photos in the interesting images folder by these 10 eigenfaces using commend <br>
+		<span style="color:#cccccc;font:10px;"><i>$for %A in (interesting/*.tga) do (main --recognizeface interesting/%A neutral.user neutral.face 1)</i></span><br>
+		This commend will return the best matched image in neutral folder. And results are shown in this below table. 
+
+		<table style="text-align: center; width: 600px;" border="1" cellpadding="2" cellspacing="2">
+			<tbody>
+				<tr>
+					<td>image_id</td>
+					<td>faces to be recognized</td>
+					<td>face matched</td>
+					<td>faces should be mathced</td>
+					<td>status</td>
+					<td>matched mse</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">01</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/01" src="images/interesting/01.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/01" src="images/neutral/01.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/01" src="images/neutral/01.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">20335.1</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">02</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/interesting/02.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/neutral/13.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/neutral/02.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">96835</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">03</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/03" src="images/interesting/03.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/03" src="images/neutral/14.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/03" src="images/neutral/03.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">22589.4</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">04</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/interesting/04.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/neutral/15.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/neutral/04.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">73442.4</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">05</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/05" src="images/interesting/05.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/05" src="images/neutral/05.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/05" src="images/neutral/05.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">59766.8</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">06</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/06" src="images/interesting/06.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/06" src="images/neutral/06.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/06" src="images/neutral/06.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">21208.9</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">07</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/07" src="images/interesting/07.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/07" src="images/neutral/24.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/07" src="images/neutral/07.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">58974.3</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">08</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/08" src="images/interesting/08.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/08" src="images/neutral/08.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/08" src="images/neutral/08.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">12656.9</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">09</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/09" src="images/interesting/09.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/09" src="images/neutral/09.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/09" src="images/neutral/09.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">25196.8</td>
+				</tr>				
+				<tr>
+					<td style="text-align: center;">10</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/10" src="images/interesting/10.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/10" src="images/neutral/10.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/10" src="images/neutral/10.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">33461.6</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">11</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/11" src="images/interesting/11.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/11" src="images/neutral/11.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/11" src="images/neutral/11.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">18382.3</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">12</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/12" src="images/interesting/12.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/12" src="images/neutral/12.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/12" src="images/neutral/12.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">45451.3</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">13</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/13" src="images/interesting/13.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/13" src="images/neutral/13.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/13" src="images/neutral/13.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">21164</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">14</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/14" src="images/interesting/14.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/14" src="images/neutral/14.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/14" src="images/neutral/14.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">9223.79</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">15</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/interesting/15.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/neutral/24.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/neutral/15.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">146803</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">16</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/16" src="images/interesting/16.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/16" src="images/neutral/12.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/16" src="images/neutral/16.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">27121.1</td>
+				</tr>	
+				<tr>
+					<td style="text-align: center;">17</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/17" src="images/interesting/17.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/17" src="images/neutral/17.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/17" src="images/neutral/17.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">6018.54</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">18</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/18" src="images/interesting/18.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/18" src="images/neutral/18.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/18" src="images/neutral/18.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">12470.4</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">19</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/19" src="images/interesting/19.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/19" src="images/neutral/19.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/19" src="images/neutral/19.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">35719.8</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">20</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/20" src="images/interesting/20.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/20" src="images/neutral/20.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/20" src="images/neutral/20.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">12178.7</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">21</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/21" src="images/interesting/21.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/21" src="images/neutral/23.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/21" src="images/neutral/21.jpg"></td>
+					<td style="text-align: center;"><span style="color: red;">not matched</span></td>
+					<td style="text-align: center;">13893.2</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">22</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/22" src="images/interesting/22.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/22" src="images/neutral/22.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/22" src="images/neutral/22.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">13188.1</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">23</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/23" src="images/interesting/23.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/23" src="images/neutral/23.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/23" src="images/neutral/23.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">3351.31</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">24</td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/24" src="images/interesting/24.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/24" src="images/neutral/24.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/24" src="images/neutral/24.jpg"></td>
+					<td style="text-align: center;"><span style="color: green;">matched</span></td>
+					<td style="text-align: center;">5884.7</td>
+				</tr>				
+			</tbody>
+		</table>
+		17 faces are matched. So, the accuracy of recognition is : 70.83%
+		</p>
+		<p>
+		(c) Plot the number of faces correctly recognized versus the number of eigenfaces used.<br>
+		<img style="width: 528px; height: 314px;" alt="chart" src="images/chart.png">
+		</p>
+		<span style="text-decoration: underline;">Questions</span><br>
+		<ul>
+			<li>Describe the trends you see in your plots. Discuss the
+				tradeoffs; how many eigenfaces should one use? Is there a clear answer?</li>
+			<li>You likely saw some recognition errors; show images of a
+				couple. How reasonable were the mistakes? Did the correct answer at
+				least appear highly in the sorted results?</li>
+		</ul>
+		<span style="text-decoration: underline;">Answer</span><br>
+		<ul>
+			<li>Generally speaking, more eigfaces used can help to recognize better result.
+			But, from this chart, it appears that accuracy not increase a lot after using 10 eigenfaces and too many eigenfaces will make the process much slower. 
+			In this case, 10 might be a good number of eigenfaces to use.
+			Hence, there is no clear answer between running time and accuracy, it depends on the need.</li>
+			<li>3 mistakes that occur very often:
+			<table style="text-align: center; width: 600px;" border="1" cellpadding="2" cellspacing="2">
+				<tbody>
+					<tr>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/interesting/02.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/neutral/13.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/02" src="images/neutral/02.jpg"></td>
+					</tr>
+					<tr>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/interesting/04.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/neutral/15.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/04" src="images/neutral/04.jpg"></td>
+					</tr>
+					<tr>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/interesting/15.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/neutral/24.jpg"></td>
+					<td style="text-align: center;"><img style="width: 100px; height: 100px;" alt="interesting/15" src="images/neutral/15.jpg"></td>
+					</tr>
+					</tbody>
+			</table>
+			</li>
+			<p>
+			These mistakes are probably caused by wired head position or the girl take off her glasses or a large area of dark color in the image. 
+			I think if we do some special handle, like only search area which has human skin color, it may performs better.
+			</p>
+		</ul>			
+		</div>
+		<div id="part2">
+		<h2>2.Cropping and finding faces</h2>
+		<p>
+		(a) crop the group/test_single.tga image.<br>
+		<span style="color: rgb(0, 153, 0);">main --findface group/test_single.tga neutral.face 0.6 0.85 0.05 crop 1 cropped_face.tga</span>
+		<table style="text-align: center; width: 354px; height: 304px;" cellspacing="2" cellpadding="2" border="0">
+			<tbody>
+			<tr>
+				<td style="vertical-align: top; text-align: center;"><img  alt="test_single" src="images/test_single.jpg"><br>
+				</td>
+				<td style="vertical-align: middle; text-align: center;"><img  alt="cropped_face" src="images/cropped_face.jpg"><br>
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: top; text-align: center;">Input image<br>
+				</td>
+				<td style="vertical-align: top; text-align: center;">Cropped image<br>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		You may notice this test_single.tga is not that original one. Becuase I just can't crop that one correctly.
+		</p>
+		<p>
+		(b) I try to find my friend's face in his protrait. But no matter what parameters I use, the result is very bad. 
+		So, I add his silly big head into the neutral folder and compute eigenfaces again. Using these new eigenfaces, I finally find his face.
+		<table style="text-align: center;;" cellspacing="2" cellpadding="2" border="0">
+			<tbody>
+			<tr>
+				<td style="vertical-align: middle; text-align: center;"><img  alt="pangding" src="images/25.jpg"><br>
+				</td>
+				<td style="vertical-align: middle; text-align: center;"><img  alt="pangding_mark" src="images/cropped1.jpg"><br>
+				</td>
+			</tr>
+			<tr>
+				<td style="vertical-align: middle; text-align: left;">Use his face compute new eigenfaces<br>
+				</td>
+				<td style="vertical-align: middle; text-align: center;">Marked image<br>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		</p>
+		<p>
+		(c) Mark the faces in two different group photos of students.<br>
+		<img alt="marked_face04" src="images/marked_face04.jpg">
+		<img alt="marked_face05" src="images/marked_face05.jpg">
+		<img alt="marked_face06" src="images/marked_face06.jpg">
+		<img alt="marked_face08" src="images/marked_face08.jpg">
+		<img alt="marked_face09" src="images/marked_face09.jpg">
+		<img alt="marked_face10" src="images/marked_face10.jpg"><br>
+		<span style="text-decoration: underline;">Questions</span>
+		<ul>
+			<li>What min_scale, max_scale, and scale step did you use for each image?</li>
+            <li>Did your attempt to find faces result in any false positives and/or false negatives? Discuss each mistake, and why you think they might have occurred.<br></li>
+		</ul>
+		<span style="text-decoration: underline;">Answer</span><br>
+		<ul>
+			<li>I use min_scale = 0.6, max_scale = 0.85, and step parameters =0.05 to do this test and get these results.</li>
+			<li>My algorithm is still not that robustic. Some faces in the group images are not marked correctly. 
+		When there appear some dark color area, it may regard it as a face. Because the variance is low so the mse estimation is good.</li>
+		</ul>
+		</div>
+		</P>
+		</div>
+		<div id="part3">
+		<h2>3. Verify Face</h2>
+		<span style="text-decoration: underline;">Questions</span>
+		<ul>
+			<li>What MSE thresholds did you try? Which one worked best? What search method did you use to find it?</li>
+            <li>Using the best MSE threshold, what was the false negative rate? What was the false positive rate?<br></li>
+		</ul>
+		<span style="text-decoration: underline;">Answer</span><br>
+		<ul>
+			<li>I didn't use any search algorithms to find the MSE thresholds, instead, I focus on anaylsis MSE data. 
+			I draw a MSE line of the interesting images with its corresponding neutral images.<br>
+			<img alt="chart2" src="images/chart2.png"><br>
+		    This shows what MSE should be when two images matched, althrough, there are some error points due to algorithm not works all the time. 
+			As what we can see in this chart, most of the data ponints are between [0,40000] or [0,60000]. 
+			So, it seems a good threshold should be around 40000 or 60000.<br>
+			Then, I verify interesting/01.tga with other images in neutral folder. Got this chart below.
+			<img alt="chart3" src="images/chart3.png"><br>
+			Expect the first data point, all other points are shown what the MSE is when images are not matched. 
+			Most of the data points are above 40000. Same conclusion can be drawn after I test all images from interesting/02.tga to interesting/24.tga and draw same kind of chart(not shown here). 
+			Hence, the best threshold I choose to use is 40000.
+			</li>
+			<li>Using the best MSE threshold:<br>
+			The false negative is 5/24 = 20.83%  (interesting 1 match neutral 1, interesting 2 match neutral 2...etc)<br>
+			The false positive is ,for each interesting image:<br>
+			<table style="text-align: center; width: 100%;" border="1">
+			<tbody>
+				<tr>
+				<td>image_id</td><td>01</td><td>02</td><td>03</td><td>04</td><td>05</td><td>06</td><td>07</td><td>08</td><td>09</td><td>10</td><td>11</td><td>12</td>
+				</tr>
+				<tr>
+				<td>false positive</td><td>0%</td><td>0%</td><td>4.16%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>4.16%</td><td>4.16%</td><td>4.16%</td><td>0%</td>
+				</tr>
+				<td>image_id</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+				</tr>
+				<tr>
+				<td>false positive</td><td>0%</td><td>4.16%</td><td>0%</td><td>8.33%</td><td>12.5%</td><td>0%</td><td>8.33%</td><td>8.33%</td><td>4.16%</td><td>4.16%</td><td>8.33%</td><td>8.33%</td></tr>
+			</tbody>
+			</table>
+			</li>		
+		</ul>
+		</div>
+		<div id="part4">
+		<h2>4. Extra Credit</h2>
+		<li>Plot recognition rates for other image resolutions. Smaller resolutions may have better recognition. Why? What's the optimal resolution for a face?</li>
+		I use diffenert resolution of eigenface to recognize faces. And find the relationship between resolution of eigenfaces and recognition accuracy. Shonw in this table and chart.
+		<table style="text-align: left; width: 600px;" cellspacing="2" cellpadding="2" border="1">
+			<tbody>
+			<tr>
+			<td>Resolution of Eigen faces</td>
+			<td>number of recognized faces</td>
+			</tr>
+			<tr><td>5*5</td><td>10</td></tr>
+			<tr><td>10*10</td><td>12</td></tr>
+			<tr><td>15*15</td><td>14</td></tr>
+			<tr><td>20*20</td><td>16</td></tr>
+			<tr><td>25*25</td><td>17</td></tr>
+			<tr><td>30*30</td><td>17</td></tr>
+			<tr><td>35*35</td><td>17</td></tr>
+			<tr><td>40*40</td><td>18</td></tr>
+			<tr><td>45*45</td><td>18</td></tr>
+			</tbody>
+		</table>
+		<img alt="chart1" src="images/chart1.png">
+		<p>Apparently, greater resolution lead higher accuracy. They are positive-related. But compute higher resolution eigenfaces consume much more time than a lower one.
+		Hence, in this experiment, 25*25 resolution eigenfaces seems the best choice which are have good accuracy and contain enough informaion.</p>		
+		</div>
+	</div>
+</div>
+</body>
+</html>
